@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  adonis:
+    build:
+      context: .
+      args:
+        NODE_ENV: ${NODE_ENV:-development}
+    ports:
+      - "3333:3333"
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - DB_CONNECTION=pg
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=${POSTGRES_USER:-adonis}
+      - DB_PASSWORD=${POSTGRES_PASSWORD:-secret}
+      - DB_DATABASE=${POSTGRES_DB:-adonisdb}
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:17-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=adonis
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=adonisdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
