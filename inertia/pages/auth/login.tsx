@@ -1,4 +1,5 @@
 import LoginForm from '~/components/login-form'
+import Navigation from '~/components/navigation'
 
 type LoginProps = {
   csrfToken: string
@@ -6,9 +7,12 @@ type LoginProps = {
 
 const Login = (props: LoginProps) => {
   return (
-    <div className="container mx-auto p-4">
-      <LoginForm csrfToken={props.csrfToken} />
-    </div>
+    <>
+      <Navigation />
+      <div className="container mx-auto p-4">
+        <LoginForm csrfToken={props.csrfToken} />
+      </div>
+    </>
   )
 }
 

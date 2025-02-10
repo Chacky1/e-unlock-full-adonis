@@ -1,12 +1,10 @@
-import { Head } from '@inertiajs/react'
+import Navigation from '~/components/navigation'
 import '~/css/app.css'
 
 export default function Home() {
   return (
     <>
-      <Head title="Homepage" />
-
-      <h1 className="text-3xl font-bold underline">Welcome to Inertia.js</h1>
+      <Navigation />
     </>
   )
 }

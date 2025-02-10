@@ -1,3 +1,4 @@
+import Navigation from '~/components/navigation'
 import RegisterForm from '~/components/register-form'
 
 type RegisterProps = {
@@ -6,9 +7,12 @@ type RegisterProps = {
 
 const Register = (props: RegisterProps) => {
   return (
-    <div className="container mx-auto p-4">
-      <RegisterForm csrfToken={props.csrfToken} />
-    </div>
+    <>
+      <Navigation />
+      <div className="container mx-auto p-4">
+        <RegisterForm csrfToken={props.csrfToken} />
+      </div>
+    </>
   )
 }
 
