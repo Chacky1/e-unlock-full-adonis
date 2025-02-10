@@ -16,64 +16,43 @@ import {
 } from "~/components/ui/form"
 import { Input } from "~/components/ui/input"
 
-type RegisterFormProps = {
+type LoginFormProps = {
   csrfToken: string
 }
 
 const registerFormSchema = z.object({
-  fullName: z.string().min(2).max(100),
   email: z.string().email(),
   password: z.string().min(8),
-  password_confirmation: z.string().min(8),
 })
 
-const RegisterForm = (props: RegisterFormProps) => {
+const LoginForm = (props: LoginFormProps) => {
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
-      fullName: "",
       email: "",
       password: "",
     },
   })
 
   function onSubmit(values: z.infer<typeof registerFormSchema>) {
-    const registerData = {
-      fullName: values.fullName,
+    const loginData = {
       email: values.email,
       password: values.password,
-      password_confirmation: values.password_confirmation,
       _csrf: props.csrfToken,
     }
     
-    fetch("/auth/register", {
+    fetch("/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(registerData),
+      body: JSON.stringify(loginData),
     })
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="fullName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nom complet</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                Nom complet de l'utilisateur
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name="email"
@@ -106,26 +85,10 @@ const RegisterForm = (props: RegisterFormProps) => {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="password_confirmation"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Confirmation du mot de passe</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                Confirmation du mot de passe de l'utilisateur
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">S'inscrire</Button>
+        <Button type="submit">Se connecter</Button>
       </form>
     </Form>
   )
 }
 
-export default RegisterForm
+export default LoginForm
