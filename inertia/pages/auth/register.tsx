@@ -1,18 +1,73 @@
-import Navigation from '~/components/navigation'
-import RegisterForm from '~/components/register-form'
+import { useForm } from '@inertiajs/react'
+import AppLayout from '~/layouts/app'
+import { Label } from '~/components/ui/label'
+import { Button } from '~/components/ui/button'
+import { Input } from '~/components/ui/input'
+import { Loader } from 'lucide-react'
 
-type RegisterProps = {
-  csrfToken: string
-}
+const Register = () => {
+  const form = useForm({
+    fullName: '',
+    email: '',
+    password: '',
+  })
 
-const Register = (props: RegisterProps) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    form.post('/auth/register', { onSuccess: () => form.reset() })
+  }
+
   return (
-    <>
-      <Navigation />
-      <div className="container mx-auto p-4">
-        <RegisterForm csrfToken={props.csrfToken} />
-      </div>
-    </>
+    <AppLayout>
+      <form className="container mx-auto p-4" onSubmit={handleSubmit}>
+        <Label htmlFor="name">
+          <span>Nom complet</span>
+          <Input
+            id="name"
+            type="text"
+            value={form.data.fullName}
+            onChange={(e) => form.setData('fullName', e.target.value)}
+            disabled={form.processing}
+          />
+          {form.errors.fullName && (
+            <p className="text-red-500">{form.errors.fullName}</p>
+          )}
+        </Label>
+
+        <Label htmlFor="email">
+          <span>E-mail</span>
+          <Input
+            id="email"
+            type="email"
+            value={form.data.email}
+            onChange={(e) => form.setData('email', e.target.value)}
+            disabled={form.processing}
+          />
+          {form.errors.email && (
+            <p className="text-red-500">{form.errors.email}</p>
+          )}
+        </Label>
+
+        <Label htmlFor="password">
+          <span>Mot de passe</span>
+          <Input
+            id="password"
+            type="password"
+            value={form.data.password}
+            onChange={(e) => form.setData('password', e.target.value)}
+            disabled={form.processing}
+          />
+          {form.errors.password && (
+            <p className="text-red-500">{form.errors.password}</p>
+          )}
+        </Label>
+
+        <Button type="submit" disabled={form.processing}>
+          {form.processing && <Loader className="mr-2 h-4 w-4 animate-spin" />}
+          Inscription
+        </Button>
+      </form>
+    </AppLayout>
   )
 }
 

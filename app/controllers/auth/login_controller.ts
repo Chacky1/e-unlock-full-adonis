@@ -5,9 +5,7 @@ import User from '#models/user'
 
 export default class LoginController {
   public async index({ inertia, request }: HttpContext) {
-    return inertia.render('auth/login', {
-      csrfToken: request.csrfToken,
-    })
+    return inertia.render('auth/login')
   }
 
   public async login({ request, response, auth }: HttpContext) {
@@ -17,6 +15,6 @@ export default class LoginController {
 
     await auth.use('web').login(user)
 
-    return response.json({ message: 'Logged in successfully' })
+    return response.redirect().back()
   }
 }

@@ -11,7 +11,8 @@ const RegisterController = () => import('#controllers/auth/register_controller')
 const LoginController = () => import('#controllers/auth/login_controller')
 
 import router from '@adonisjs/core/services/router'
-router.on('/').renderInertia('home')
+
+router.on('/').renderInertia('home').as('home')
 
 router
   .group(() => {
@@ -21,4 +22,3 @@ router
     router.post('/login', [LoginController, 'login']).as('login-store')
   })
   .prefix('auth')
-  .as('auth')

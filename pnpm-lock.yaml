@@ -148,6 +148,9 @@ importers:
       eslint:
         specifier: ^9.17.0
         version: 9.20.0(jiti@2.4.2)
+      eslint-config-prettier:
+        specifier: ^10.0.1
+        version: 10.0.1(eslint@9.20.0(jiti@2.4.2))
       hot-hook:
         specifier: ^0.4.0
         version: 0.4.0
@@ -155,7 +158,7 @@ importers:
         specifier: ^13.0.0
         version: 13.0.0
       prettier:
-        specifier: ^3.4.2
+        specifier: ^3.5.0
         version: 3.5.0
       ts-node-maintained:
         specifier: ^10.9.4
@@ -2118,6 +2121,12 @@ packages:
   escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
+
+  eslint-config-prettier@10.0.1:
+    resolution: {integrity: sha512-lZBts941cyJyeaooiKxAtzoPHTN+GbQTJFAIdQbRhA4/8whaAraEh47Whw/ZFfrjNSnlAxqfm9i0XVAEkULjCw==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
 
   eslint-config-prettier@9.1.0:
     resolution: {integrity: sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==}
@@ -6171,6 +6180,10 @@ snapshots:
   escape-string-regexp@1.0.5: {}
 
   escape-string-regexp@4.0.0: {}
+
+  eslint-config-prettier@10.0.1(eslint@9.20.0(jiti@2.4.2)):
+    dependencies:
+      eslint: 9.20.0(jiti@2.4.2)
 
   eslint-config-prettier@9.1.0(eslint@9.20.0(jiti@2.4.2)):
     dependencies:
