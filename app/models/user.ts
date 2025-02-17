@@ -1,8 +1,13 @@
 import { DateTime } from 'luxon'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
+import type { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
+import Role from './role.js'
+import Course from './course.js'
+import EmailHistory from './email_history.js'
+import PasswordResetToken from './password_reset_token.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -12,6 +17,9 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
 export default class User extends compose(BaseModel, AuthFinder) {
   @column({ isPrimary: true })
   declare id: number
+
+  @column()
+  declare roleId: number
 
   @column()
   declare fullName: string | null
@@ -27,4 +35,18 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+
+  @belongsTo(() => Role)
+  declare role: BelongsTo<typeof Role>
+
+  @hasMany(() => EmailHistory)
+  declare emailHistories: HasMany<typeof EmailHistory>
+
+  @hasMany(() => PasswordResetToken)
+  declare passwordResetTokens: HasMany<typeof PasswordResetToken>
+
+  @manyToMany(() => Course, {
+    pivotTable: 'course_users',
+  })
+  declare courses: ManyToMany<typeof Course>
 }
