@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react'
+import { Toaster } from "~/components/ui/toaster"
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -28,6 +29,8 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
       <main>
         {children}
       </main>
+
+      <Toaster />
     </>
   )
 }

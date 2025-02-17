@@ -1,18 +1,20 @@
 import type { HttpContext } from '@adonisjs/core/http'
+import { inject } from '@adonisjs/core'
 
 import { registerValidator } from '#validators/auth/register'
-import User from '#models/user'
+import WebRegister from '#actions/auth/web_register'
 
 export default class RegisterController {
-  public async index({ inertia }: HttpContext) {
+  public async show({ inertia }: HttpContext) {
     return inertia.render('auth/register')
   }
   
-  public async register({ request, response }: HttpContext) {
+  @inject()
+  public async register({ request, response }: HttpContext, webRegister: WebRegister) {
     const userData = await request.validateUsing(registerValidator)
 
-    await User.create(userData)
+    await webRegister.handle({ data: userData })
 
-    return response.redirect().toRoute('login-page')
+    return response.redirect().toPath('/')
   }
 }

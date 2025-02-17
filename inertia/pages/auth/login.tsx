@@ -4,6 +4,7 @@ import { Label } from '~/components/ui/label'
 import { Input } from '~/components/ui/input'
 import { Button } from '~/components/ui/button'
 import { Loader } from 'lucide-react'
+import { useToast } from "~/hooks/use-toast"
 
 const Login = () => {
   const form = useForm({
@@ -11,9 +12,16 @@ const Login = () => {
     password: '',
   })
 
+  const { toast } = useToast()
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    form.post('/auth/login', { onSuccess: () => form.reset() })
+    form.post('/auth/login', {
+      onSuccess: () => toast({
+        title: "Connexion réussie",
+        description: "Bienvenue sur e-unlock !",
+      })
+    })
   }
 
   return (

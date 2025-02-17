@@ -1,20 +1,20 @@
 import type { HttpContext } from '@adonisjs/core/http'
 
 import { loginValidator } from '#validators/auth/login'
-import User from '#models/user'
+import WebLogin from '#actions/auth/web_login'
+import { inject } from '@adonisjs/core'
 
 export default class LoginController {
-  public async index({ inertia, request }: HttpContext) {
+  public async show({ inertia }: HttpContext) {
     return inertia.render('auth/login')
   }
 
-  public async login({ request, response, auth }: HttpContext) {
-    const { email, password } = await request.validateUsing(loginValidator)
+  @inject()
+  public async login({ request, response }: HttpContext, webLogin: WebLogin) {
+    const loginData = await request.validateUsing(loginValidator)
 
-    const user = await User.verifyCredentials(email, password)
+    await webLogin.handle({ data: loginData })
 
-    await auth.use('web').login(user)
-
-    return response.redirect().back()
+    return response.redirect().toPath('/')
   }
 }
