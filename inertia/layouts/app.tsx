@@ -1,28 +1,26 @@
-import { Link } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/react'
+import AuthNavigation from '~/components/authNavigation'
 import { Toaster } from "~/components/ui/toaster"
+import UserPanel from '~/components/userPanel'
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
+  const isAuthenticated = usePage().props.isAuthenticated
+
   return (
     <>
       <header>
         <section id="logo">
           <Link href="/">
             <img
-              src="/images/unlock-logo.webp"
-              width={40}
-              height={40}
+              src="/public/assets/images/e-unlock-logo.png"
+              width={250}
               alt="UnlockTonComputer"
             />
           </Link>
         </section>
 
-        <section id="navigation">
-          <Link href="/auth/register">
-            Inscription
-          </Link>
-          <Link href="/auth/login">
-            Connexion
-          </Link>
+        <section id="authentication">
+          {!isAuthenticated ? <AuthNavigation /> : <UserPanel />}
         </section>
       </header>
 

@@ -1,3 +1,4 @@
+import UserDto from '#dtos/user'
 import { defineConfig } from '@adonisjs/inertia'
 import type { InferSharedProps, PageProps } from '@adonisjs/inertia/types'
 
@@ -11,10 +12,13 @@ const inertiaConfig = defineConfig({
    * Data that should be shared with all rendered pages
    */
   sharedData: {
-    /*user: (ctx) => {
+    user: (ctx) => {
       const user = ctx.auth.use('web').user
       return user && new UserDto(user)
-    },*/
+    },
+    isAuthenticated: (ctx) => {
+      return ctx.auth.use('web').check()
+    },
     exceptions: (ctx) => ctx.session.flashMessages.get('errorsBag') ?? {},
     messages: (ctx) => ctx.session.flashMessages.all() ?? {},
     //errors: (ctx) => ctx.inertia.always(() => ctx.session?.flashMessages.get('errors')),

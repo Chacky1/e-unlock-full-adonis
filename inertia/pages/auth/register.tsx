@@ -5,6 +5,7 @@ import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Loader } from 'lucide-react'
 import { useToast } from "~/hooks/use-toast"
+import FormInput from '~/components/formInput'
 
 const Register = () => {
   const form = useForm({
@@ -28,47 +29,9 @@ const Register = () => {
   return (
     <AppLayout>
       <form className="container mx-auto p-4" onSubmit={handleSubmit}>
-        <Label htmlFor="name">
-          <span>Nom complet</span>
-          <Input
-            id="name"
-            type="text"
-            value={form.data.fullName}
-            onChange={(e) => form.setData('fullName', e.target.value)}
-            disabled={form.processing}
-          />
-          {form.errors.fullName && (
-            <p className="text-red-500">{form.errors.fullName}</p>
-          )}
-        </Label>
-
-        <Label htmlFor="email">
-          <span>E-mail</span>
-          <Input
-            id="email"
-            type="email"
-            value={form.data.email}
-            onChange={(e) => form.setData('email', e.target.value)}
-            disabled={form.processing}
-          />
-          {form.errors.email && (
-            <p className="text-red-500">{form.errors.email}</p>
-          )}
-        </Label>
-
-        <Label htmlFor="password">
-          <span>Mot de passe</span>
-          <Input
-            id="password"
-            type="password"
-            value={form.data.password}
-            onChange={(e) => form.setData('password', e.target.value)}
-            disabled={form.processing}
-          />
-          {form.errors.password && (
-            <p className="text-red-500">{form.errors.password}</p>
-          )}
-        </Label>
+        <FormInput id="name" label="Nom complet" changeHandler={(e) => form.setData('fullName', e.target.value)} value={form.data.fullName} error={form.errors.fullName} disabled={form.processing} required />
+        <FormInput id="email" label="E-mail" type="email" changeHandler={(e) => form.setData('email', e.target.value)} value={form.data.email} error={form.errors.email} disabled={form.processing} required />
+        <FormInput id="password" label="Mot de passe" type="password" changeHandler={(e) => form.setData('password', e.target.value)} value={form.data.password} error={form.errors.password} disabled={form.processing} required />
 
         <Button type="submit" disabled={form.processing}>
           {form.processing && <Loader className="mr-2 h-4 w-4 animate-spin" />}
