@@ -1,3 +1,4 @@
+import HomeController from '#controllers/home_controller'
 import router from '@adonisjs/core/services/router'
 
-router.on('/').renderInertia('home').as('home')
+router.get('/', [HomeController, 'show']).as('home')
