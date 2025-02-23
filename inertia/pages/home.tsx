@@ -9,7 +9,7 @@ export default function Home({ courses }: { courses: CourseDto[] }) {
   return (
     <>
       <AppLayout>
-        <div className="py-16 px-4 md:px-32">
+        <div className="flex flex-col gap-16 py-16 px-8 lg:px-32">
           <Hero />
           <CoursesPreview courses={courses} />
         </div>

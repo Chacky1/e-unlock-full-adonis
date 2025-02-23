@@ -3,9 +3,10 @@ import { Input } from '~/components/ui/input'
 
 type FormInputProps = {
   id: string,
-  label: string,
+  label?: string,
   type?: string,
-  changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  changeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  placeholder?: string,
   value?: string,
   error?: string,
   disabled?: boolean,
@@ -23,6 +24,7 @@ const FormInput = (props: FormInputProps) => {
         onChange={(e) => props.changeHandler(e)}
         disabled={props.disabled}
         required={props.required}
+        placeholder={props.placeholder}
       />
       {props.error && (
         <p className="text-red-500">{props.error}</p>

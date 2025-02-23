@@ -1,14 +1,10 @@
-import { Link } from '@inertiajs/react'
+import NavigationLink from './navigation-link'
 
 const AuthNavigation = () => {
   return (
     <div className='flex gap-4'>
-      <Link href="/auth/register" className='text-muted-foreground transition-colors hover:text-foreground'>
-        Inscription
-      </Link>
-      <Link href="/auth/login" className='text-muted-foreground transition-colors hover:text-foreground'>
-        Connexion
-      </Link>
+      <NavigationLink href="/auth/register" label="Inscription" />
+      <NavigationLink href="/auth/login" label="Connexion" />
     </div>
   )
 }
