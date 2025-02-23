@@ -8,7 +8,7 @@ type CoursesPreviewProps = {
 const CoursesPreview = (props: CoursesPreviewProps) => {
   return (
     <section id="courses-preview">
-      <h2 className="text-4xl font-bold">
+      <h2>
         Les formations.
       </h2>
       <span className="text-primary">Apprendre pas à pas</span>

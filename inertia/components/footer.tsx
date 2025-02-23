@@ -10,17 +10,17 @@ const Footer = () => {
       <div className="flex flex-col justify-between px-8 gap-8 md:flex-row lg:px-32">
         <section id="legals">
           <div>
-            <h4 className="text-lg font-bold">Informations légales</h4>
+            <h4>Informations légales</h4>
             <ul className="flex flex-col mt-4">
-              <NavigationLink href="legal" label="Mentions légales" />
-              <NavigationLink href="terms" label="Conditions générales d'utilisation" />
-              <NavigationLink href="privacy-policy" label="Politique de confidentialité" />
-              <NavigationLink href="cookies" label="Politique de cookies" />
+              <NavigationLink href="/legals/legal" label="Mentions légales" />
+              <NavigationLink href="/legals/terms" label="Conditions générales d'utilisation" />
+              <NavigationLink href="/legals/privacy-policy" label="Politique de confidentialité" />
+              <NavigationLink href="/legals/cookies" label="Politique de cookies" />
             </ul>
           </div>
         </section>
         <section id="newsletter">
-          <h4 className="text-lg font-bold">Abonnez-vous à ma Newsletter</h4>
+          <h4>Abonnez-vous à ma Newsletter</h4>
           <p>Pour recevoir tous mes conseils de développeur backend</p>
           <form className="flex flex-col gap-4">
             <FormInput id="email" type="email" placeholder="Votre adresse email" />

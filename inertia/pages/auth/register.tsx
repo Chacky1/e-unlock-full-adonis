@@ -1,8 +1,6 @@
 import { useForm } from '@inertiajs/react'
 import AppLayout from '~/layouts/app'
-import { Label } from '~/components/ui/label'
 import { Button } from '~/components/ui/button'
-import { Input } from '~/components/ui/input'
 import { Loader } from 'lucide-react'
 import { useToast } from "~/hooks/use-toast"
 import FormInput from '~/components/form-input'
