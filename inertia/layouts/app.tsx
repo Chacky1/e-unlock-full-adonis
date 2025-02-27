@@ -2,7 +2,11 @@ import Footer from "~/components/footer"
 import Header from "~/components/header"
 import { Toaster } from "~/components/ui/toaster"
 
-const AppLayout = ({ children }: { children: React.ReactNode }) => {
+type AppLayoutProps = {
+  children: React.ReactNode
+}
+
+const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <>
       <Header />

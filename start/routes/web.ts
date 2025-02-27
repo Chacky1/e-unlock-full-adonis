@@ -1,7 +1,9 @@
 import HomeController from '#controllers/home_controller'
+import LessonsController from '#controllers/lessons_controller'
+import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 
-router.get('/', [HomeController, 'show']).as('home')
+router.get('/', [HomeController, 'show']).as('home').use(middleware.silentAuth())
 
 router.group(() => {
   router.get('/legal', async ({ inertia }) => {
@@ -20,3 +22,5 @@ router.group(() => {
     return inertia.render('legals/cookies')
   }).as('legals.cookies')
 }).prefix('legals')
+
+router.get('/courses/:courseSlug/lessons/:lessonId', [LessonsController, 'show']).as('lessons.show')

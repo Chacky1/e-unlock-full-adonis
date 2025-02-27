@@ -2,34 +2,24 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLab
 import { Button } from "./ui/button"
 import { UserCircle } from "lucide-react"
 import { useToast } from "~/hooks/use-toast"
-import { Link } from '@inertiajs/react'
+import { router, usePage } from '@inertiajs/react'
+import UserDto from "#dtos/user"
 
 const UserPanel = () => {
+  const user = usePage().props.user as UserDto
   const { toast } = useToast()
 
-  const printLogoutToast = () => {
+  const logoutUser = () => {
     toast({
       title: "Déconnexion réussie",
       description: "Vous avez été déconnecté avec succès.",
     })
+
+    return router.post('/auth/logout')
   }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="secondary" size="icon" className="rounded-full">
-          <UserCircle className="w-5 h-5" />
-          <span className="sr-only">Ouvrir le menu utilisateur</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/auth/logout" method="post" onClick={printLogoutToast}>Se déconnecter</Link>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button onClick={logoutUser}>Se déconnecter</Button>
   )
 }
 

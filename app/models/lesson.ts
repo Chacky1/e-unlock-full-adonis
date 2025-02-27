@@ -1,13 +1,77 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { afterFetch, afterFind, BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import drive from '@adonisjs/drive/services/main'
+import Module from './module.js'
 
 export default class Lesson extends BaseModel {
+  @afterFind()
+  static async hydrateLessonWithSignedUrls(lesson: Lesson) {
+    const hydratedLesson = await Lesson.hydrateLessonWithVideoSignedUrl(lesson)
+
+    return hydratedLesson
+  }
+
+  @afterFetch()
+  static async hydrateLessonsWithSignedUrls(lessons: Lesson[]) {
+    const hydratedLessons = []
+
+    for (const lesson of lessons) {
+      const hydratedLesson = await Lesson.hydrateLessonWithSignedUrls(lesson)
+
+      hydratedLessons.push(hydratedLesson)
+    }
+
+    return hydratedLessons
+  }
+
   @column({ isPrimary: true })
   declare id: number
+
+  @column()
+  declare moduleId: number
+
+  @column()
+  declare name: string
+
+  @column()
+  declare content: string
+
+  @column()
+  declare order: number
+
+  @column()
+  declare videoUrl: string
+
+  @column()
+  declare isActive: boolean
+
+  @column()
+  declare isFree: boolean
+
+  @column.dateTime()
+  declare publishedAt: DateTime
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @belongsTo(() => Module)
+  declare module: BelongsTo<typeof Module>
+
+  static async hydrateLessonWithVideoSignedUrl(lesson: Lesson) {
+    if (lesson.videoUrl === null) {
+      return lesson
+    }
+
+    const lessonVideoUrl = new URL(lesson.videoUrl)
+
+    const signedVideoUrl = await drive.use().getUrl(lessonVideoUrl.pathname)
+
+    lesson.videoUrl = signedVideoUrl
+
+    return lesson
+  }
 }

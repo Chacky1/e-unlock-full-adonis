@@ -11,7 +11,7 @@ export default class HomeController {
     const coursesDto = courses.map(course => new CourseDto(course))
 
     return inertia.render('home', {
-      courses: coursesDto
+      courses: coursesDto,
     })
   }
   

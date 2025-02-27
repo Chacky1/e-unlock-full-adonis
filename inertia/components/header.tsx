@@ -6,7 +6,7 @@ const Header = () => {
   const isAuthenticated = usePage().props.isAuthenticated
 
   return (
-    <header className='sticky top-0 z-50 h-16 flex justify-between items-center px-8 lg:px-32'>
+    <header className='sticky top-0 z-50 h-16 flex justify-between items-center px-8 bg-background lg:px-32'>
       <section id="logo">
         <Link href="/">
           <img
@@ -18,7 +18,7 @@ const Header = () => {
       </section>
 
       <section id="authentication">
-        {!isAuthenticated ? <AuthNavigation /> : <UserPanel />}
+        {isAuthenticated ? <UserPanel /> : <AuthNavigation />}
       </section>
     </header>
   )

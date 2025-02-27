@@ -1,10 +1,10 @@
 import { DateTime } from 'luxon'
 import { afterFetch, afterFind, BaseModel, column, hasMany, hasManyThrough, manyToMany } from '@adonisjs/lucid/orm'
 import type { HasMany, HasManyThrough, ManyToMany } from '@adonisjs/lucid/types/relations'
+import drive from '@adonisjs/drive/services/main'
 import User from './user.js'
 import Module from './module.js'
 import Lesson from './lesson.js'
-import drive from '@adonisjs/drive/services/main'
 
 export default class Course extends BaseModel {
   @afterFind()

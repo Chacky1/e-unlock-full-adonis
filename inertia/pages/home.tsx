@@ -5,7 +5,11 @@ import Hero from '~/components/hero'
 import CoursesPreview from '~/components/courses-preview'
 import CourseDto from '#dtos/course'
 
-export default function Home({ courses }: { courses: CourseDto[] }) {
+type HomeProps = {
+  courses: CourseDto[],
+}
+
+export default function Home({ courses }: HomeProps) {
   return (
     <>
       <AppLayout>
