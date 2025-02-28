@@ -10,7 +10,7 @@ const driveConfig = defineConfig({
    */
   services: { 
     gcs: services.gcs({
-      credentials: env.get('GCS_KEY'),
+      credentials: env.get('GCS_KEY') ? env.get('GCS_KEY') : undefined,
       bucket: env.get('GCS_BUCKET'),
       visibility: 'public',
     }),
