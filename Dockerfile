@@ -4,7 +4,7 @@
 FROM node:22-slim AS builder
 
 # Définir l'environnement
-ARG NODE_ENV=development
+ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /app
