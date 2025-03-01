@@ -38,7 +38,7 @@ WORKDIR /app
 RUN npm install -g pnpm
 
 # Copier l'application depuis l'étape builder
-COPY --from=builder /app /app
+COPY --from=builder /app/build /app
 
 # Copier le script d'entrée qui va gérer les migrations et le démarrage
 COPY entrypoint.sh /entrypoint.sh

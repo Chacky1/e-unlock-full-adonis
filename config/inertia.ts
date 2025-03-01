@@ -1,5 +1,4 @@
 import UserDto from '#dtos/user'
-import User from '#models/user'
 import { defineConfig } from '@adonisjs/inertia'
 import type { InferSharedProps, PageProps } from '@adonisjs/inertia/types'
 
