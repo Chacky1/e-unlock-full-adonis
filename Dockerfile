@@ -25,6 +25,8 @@ RUN npm install -g pnpm
 # Copier l'application depuis l'étape builder
 COPY --from=builder /app/build /app
 
+RUN pnpm install --prod
+
 # Copier le script d'entrée qui va gérer les migrations et le démarrage
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
