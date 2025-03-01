@@ -18,8 +18,8 @@ const inertiaConfig = defineConfig({
     user: (ctx) => {
       return ctx.auth?.user ? new UserDto(ctx.auth.user) : null
     },
-    exceptions: (ctx) => ctx.session.flashMessages.get('errorsBag') ?? {},
-    messages: (ctx) => ctx.session.flashMessages.all() ?? {},
+    //exceptions: (ctx) => ctx.session.flashMessages.get('errorsBag') ?? {},
+    //messages: (ctx) => ctx.session.flashMessages.all() ?? {},
     //errors: (ctx) => ctx.inertia.always(() => ctx.session?.flashMessages.get('errors')),
   },
 
