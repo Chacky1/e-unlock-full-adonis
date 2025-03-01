@@ -10,7 +10,7 @@ const Header = () => {
       <section id="logo">
         <Link href="/">
           <img
-            src="/public/assets/images/e-unlock-logo.png"
+            src="/assets/images/e-unlock-logo.png"
             width={150}
             alt="UnlockTonComputer"
           />

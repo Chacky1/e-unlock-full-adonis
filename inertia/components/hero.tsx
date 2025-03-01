@@ -10,7 +10,7 @@ const Hero = () => {
         </p>
       </div>
       <div>
-        <img className="w-[500px] md:w-[750px]" src="/public/assets/images/e-unlock-hero.png" alt="Ville" />
+        <img className="w-[500px] md:w-[750px]" src="/assets/images/e-unlock-hero.png" alt="Ville" />
       </div>
     </section>
   )

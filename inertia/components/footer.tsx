@@ -32,7 +32,7 @@ const Footer = () => {
       <hr className="border-t border-muted-foreground" />
 
       <div className="flex flex-col justify-between items-center gap-8 mb-8 px-8 md:flex-row lg:px-32">
-        <img width={150} src="/public/assets/images/e-unlock-logo.png" alt="e-unlock" />
+        <img width={150} src="/assets/images/e-unlock-logo.png" alt="e-unlock" />
         <p>UnlockTonComputer &copy; {DateTime.now().year}. Tout droit réservé.</p>
         <section id="socials" className="flex gap-8">
           <a href="https://www.instagram.com/unlocktoncomputer/" target="_blank">
