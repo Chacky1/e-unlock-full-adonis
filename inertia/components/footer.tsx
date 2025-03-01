@@ -23,7 +23,7 @@ const Footer = () => {
           <h4>Abonnez-vous à ma Newsletter</h4>
           <p>Pour recevoir tous mes conseils de développeur backend</p>
           <form className="flex flex-col gap-4">
-            <FormInput id="email" type="email" placeholder="Votre adresse email" />
+            <FormInput id="email" type="email" placeholder="Votre adresse email" disabled />
             <Button type="submit">S'inscrire</Button>
           </form>
         </section>
