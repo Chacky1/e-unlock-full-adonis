@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { Head, useForm } from '@inertiajs/react'
 import AppLayout from '~/layouts/app'
 import { Button } from '~/components/ui/button'
 import { Loader } from 'lucide-react'
@@ -26,6 +26,7 @@ const Register = () => {
 
   return (
     <AppLayout>
+      <Head title='Inscription' />
       <form className="container min-h-96 mx-auto px-24 flex flex-col justify-center gap-8 mt-8" onSubmit={handleSubmit}>
         <FormInput id="name" label="Nom complet" changeHandler={(e) => form.setData('fullName', e.target.value)} value={form.data.fullName} error={form.errors.fullName} disabled={form.processing} required />
         <FormInput id="email" label="E-mail" type="email" changeHandler={(e) => form.setData('email', e.target.value)} value={form.data.email} error={form.errors.email} disabled={form.processing} required />

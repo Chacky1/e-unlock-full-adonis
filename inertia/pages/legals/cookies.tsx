@@ -1,8 +1,10 @@
+import { Head } from "@inertiajs/react";
 import AppLayout from "~/layouts/app";
 
 const Cookies = () => {
   return (
     <AppLayout>
+      <Head title="Cookies" />
       <section id="cookies" className="flex flex-col gap-16 py-16 px-8 lg:px-32">
         <h1>Politique sur les Cookies</h1>
         <div>

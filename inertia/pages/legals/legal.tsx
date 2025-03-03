@@ -1,8 +1,10 @@
+import { Head } from "@inertiajs/react";
 import AppLayout from "~/layouts/app";
 
 const Legal = () => {
   return (
     <AppLayout>
+      <Head title="Mentions légales" />
       <section id="legal" className="flex flex-col gap-16 py-16 px-8 lg:px-32">
         <h1>Mentions légales</h1>
         <div>

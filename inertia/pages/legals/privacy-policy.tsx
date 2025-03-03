@@ -1,8 +1,10 @@
+import { Head } from "@inertiajs/react";
 import AppLayout from "~/layouts/app";
 
 const PrivacyPolicy = () => {
   return (
     <AppLayout>
+      <Head title="Politique de Confidentialité" />
       <section id="privacy-policy" className="flex flex-col gap-16 py-16 px-8 lg:px-32">
         <h1>
           Politique de Confidentialité

@@ -1,8 +1,10 @@
+import { Head } from "@inertiajs/react";
 import AppLayout from "~/layouts/app";
 
 const Terms = () => {
   return (
     <AppLayout>
+      <Head title="Conditions Générales de Vente" />
       <section id="terms" className="flex flex-col gap-16 py-16 px-8 lg:px-32">
         <h1>Conditions Générales de Vente</h1>
         <div>
