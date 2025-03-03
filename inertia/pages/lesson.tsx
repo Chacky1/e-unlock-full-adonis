@@ -1,6 +1,6 @@
 import CourseDto from "#dtos/course"
 import LessonDto from "#dtos/lesson"
-import { router } from "@inertiajs/react"
+import { Head, router } from "@inertiajs/react"
 import LessonContent from "~/components/lesson-content"
 import LessonSidebar from "~/components/lesson-sidebar"
 import { Button } from "~/components/ui/button"
@@ -63,6 +63,7 @@ const Lesson = ({ course, lesson }: LessonProps) => {
 
   return (
     <LessonLayout course={course}>
+      <Head title={course.name} />
       <div className="flex flex-col gap-8 lg:gap-16 py-16 px-8 lg:px-32">
         <VideoPlayer videoUrl={lesson.videoUrl} />
 
