@@ -2,8 +2,27 @@ import { Button } from "./ui/button";
 import FormInput from "./form-input";
 import NavigationLink from "./navigation-link";
 import { DateTime } from "luxon";
+import { useForm } from "@inertiajs/react";
+import { useToast } from "~/hooks/use-toast";
+import { Loader } from "lucide-react";
 
 const Footer = () => {
+  const form = useForm({
+    email: '',
+  })
+
+  const { toast } = useToast()
+
+  const addContact = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    form.post('/mailer/contacts', {
+      onSuccess: () => toast({
+        title: "Vous êtes inscrit à la newsletter",
+        description: "Bienvenue sur la newsletter unlock-tech-news !",
+      })
+    })
+  }
+
   return (
     <footer className="flex flex-col gap-8 mt-16">
       <hr className="border-t border-muted-foreground" />
@@ -22,9 +41,12 @@ const Footer = () => {
         <section id="newsletter">
           <h4>Abonnez-vous à ma Newsletter</h4>
           <p>Pour recevoir tous mes conseils de développeur backend</p>
-          <form className="flex flex-col gap-4">
-            <FormInput id="email" type="email" placeholder="Votre adresse email" disabled />
-            <Button type="submit">S'inscrire</Button>
+          <form className="flex flex-col gap-4" onSubmit={addContact}>
+            <FormInput id="email" type="email" placeholder="Votre adresse email" changeHandler={(e) => form.setData('email', e.target.value)} value={form.data.email} error={form.errors.email} disabled={form.processing} />
+            <Button type="submit" disabled={form.processing}>
+              {form.processing && <Loader className="mr-2 h-4 w-4 animate-spin" />}
+              S'inscrire
+            </Button>
           </form>
         </section>
       </div>
