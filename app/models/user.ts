@@ -8,6 +8,7 @@ import Role from './role.js'
 import Course from './course.js'
 import EmailHistory from './email_history.js'
 import PasswordResetToken from './password_reset_token.js'
+import Lesson from './lesson.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -45,8 +46,8 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @hasMany(() => PasswordResetToken)
   declare passwordResetTokens: HasMany<typeof PasswordResetToken>
 
-  @manyToMany(() => Course, {
-    pivotTable: 'course_users',
+  @manyToMany(() => Lesson, {
+    pivotTable: 'user_lessons',
   })
-  declare courses: ManyToMany<typeof Course>
+  declare lessons: ManyToMany<typeof Lesson>
 }
