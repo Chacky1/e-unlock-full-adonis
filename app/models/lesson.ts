@@ -64,6 +64,7 @@ export default class Lesson extends BaseModel {
 
   @manyToMany(() => User, {
     pivotTable: 'user_lessons',
+    pivotTimestamps: true,
   })
   declare users: ManyToMany<typeof User>
 

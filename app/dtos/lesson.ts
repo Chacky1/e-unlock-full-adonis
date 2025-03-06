@@ -34,6 +34,6 @@ export default class LessonDto extends BaseModelDto {
     this.createdAt = lesson.createdAt.toISO()!
     this.updatedAt = lesson.updatedAt.toISO()!
     this.module = lesson.module && new ModuleDto(lesson.module)
-    this.users = lesson.users && UserDto.fromArray(lesson.users)
+    this.users = UserDto.fromArray(lesson.users)
   }
 }

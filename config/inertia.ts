@@ -1,4 +1,5 @@
 import UserDto from '#dtos/user'
+import User from '#models/user'
 import { defineConfig } from '@adonisjs/inertia'
 import type { InferSharedProps, PageProps } from '@adonisjs/inertia/types'
 
@@ -15,8 +16,14 @@ const inertiaConfig = defineConfig({
     isAuthenticated: (ctx) => {
       return ctx.auth?.isAuthenticated
     },
-    user: (ctx) => {
-      return ctx.auth?.user ? new UserDto(ctx.auth.user) : null
+    user: async (ctx) => {
+      if (!ctx.auth?.user) {
+        return null
+      }
+
+      const user = await User.query().preload('lessons').where('id', ctx.auth.user.id).firstOrFail()
+
+      return new UserDto(user)
     },
     //exceptions: (ctx) => ctx.session.flashMessages.get('errorsBag') ?? {},
     //messages: (ctx) => ctx.session.flashMessages.all() ?? {},
