@@ -93,7 +93,7 @@ const Lesson = ({ course, lesson }: LessonProps) => {
     <LessonLayout course={course}>
       <Head title={course.name} />
       <div className="flex flex-col gap-4 lg:gap-8 py-16 px-8 lg:px-32">
-        <VideoPlayer videoUrl={lesson.videoUrl} />
+        <VideoPlayer videoUrl={lesson.videoUrl} lesson={lesson} user={user} />
 
         <div className="flex justify-between lg:hidden">
           <Button className="mt-4" disabled={!findPreviousLesson()} onClick={redirectToPreviousVideo}>Vidéo précédente</Button>
