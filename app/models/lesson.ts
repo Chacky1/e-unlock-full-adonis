@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon'
-import { afterFetch, afterFind, BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { afterFetch, afterFind, BaseModel, belongsTo, column, manyToMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, ManyToMany } from '@adonisjs/lucid/types/relations'
 import drive from '@adonisjs/drive/services/main'
 import Module from './module.js'
+import User from './user.js'
 
 export default class Lesson extends BaseModel {
   @afterFind()
@@ -60,6 +61,12 @@ export default class Lesson extends BaseModel {
 
   @belongsTo(() => Module)
   declare module: BelongsTo<typeof Module>
+
+  @manyToMany(() => User, {
+    pivotTable: 'user_lessons',
+    pivotTimestamps: true,
+  })
+  declare users: ManyToMany<typeof User>
 
   static async hydrateLessonWithVideoSignedUrl(lesson: Lesson) {
     if (lesson.videoUrl === null) {

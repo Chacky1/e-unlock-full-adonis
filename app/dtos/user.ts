@@ -3,7 +3,7 @@ import User from '#models/user'
 import RoleDto from '#dtos/role'
 import EmailHistoryDto from '#dtos/email_history'
 import PasswordResetTokenDto from '#dtos/password_reset_token'
-import CourseDto from '#dtos/course'
+import LessonDto from '#dtos/lesson'
 
 export default class UserDto extends BaseModelDto {
   declare id: number
@@ -16,7 +16,7 @@ export default class UserDto extends BaseModelDto {
   declare role: RoleDto | null
   declare emailHistories: EmailHistoryDto[]
   declare passwordResetTokens: PasswordResetTokenDto[]
-  declare courses: CourseDto[]
+  declare lessons: LessonDto[]
 
   constructor(user?: User) {
     super()
@@ -32,6 +32,6 @@ export default class UserDto extends BaseModelDto {
     this.role = user.role && new RoleDto(user.role)
     this.emailHistories = EmailHistoryDto.fromArray(user.emailHistories)
     this.passwordResetTokens = PasswordResetTokenDto.fromArray(user.passwordResetTokens)
-    this.courses = CourseDto.fromArray(user.courses)
+    this.lessons = LessonDto.fromArray(user.lessons)
   }
 }

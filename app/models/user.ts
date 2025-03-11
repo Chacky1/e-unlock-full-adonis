@@ -5,9 +5,9 @@ import { BaseModel, belongsTo, column, hasMany, manyToMany } from '@adonisjs/luc
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import type { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
 import Role from './role.js'
-import Course from './course.js'
 import EmailHistory from './email_history.js'
 import PasswordResetToken from './password_reset_token.js'
+import Lesson from './lesson.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -45,8 +45,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @hasMany(() => PasswordResetToken)
   declare passwordResetTokens: HasMany<typeof PasswordResetToken>
 
-  @manyToMany(() => Course, {
-    pivotTable: 'course_users',
+  @manyToMany(() => Lesson, {
+    pivotTable: 'user_lessons',
+    pivotTimestamps: true,
   })
-  declare courses: ManyToMany<typeof Course>
+  declare lessons: ManyToMany<typeof Lesson>
 }

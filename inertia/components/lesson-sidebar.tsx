@@ -1,13 +1,16 @@
 import CourseDto from "#dtos/course"
-import { GraduationCap } from "lucide-react"
+import { Circle, CircleCheckBig, GraduationCap } from "lucide-react"
 import { SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, Sidebar, SidebarHeader } from "./ui/sidebar"
-import { Link } from "@inertiajs/react"
+import { Link, usePage } from "@inertiajs/react"
+import UserDto from "#dtos/user"
 
 type LessonSidebarProps = {
   course: CourseDto
 }
 
 const LessonSidebar = ({ course }: LessonSidebarProps) => {
+  const user = usePage().props.user as UserDto | null
+
   return (
     <Sidebar className="hidden h-screen lg:flex">
       <SidebarHeader className="p-4">
@@ -27,6 +30,7 @@ const LessonSidebar = ({ course }: LessonSidebarProps) => {
                   <SidebarMenuItem key={lesson.id}>
                     <SidebarMenuButton asChild>
                       <Link href={`/courses/${course.slug}/lessons/${lesson.id}`} className="flex items-center space-x-2">
+                        {user?.lessons.some(userLesson => userLesson.id === lesson.id) ? <CircleCheckBig /> : <Circle />}
                         <span>{module.order + 1}.{lesson.order + 1}</span>
                         <span>{lesson.name}</span>
                       </Link>

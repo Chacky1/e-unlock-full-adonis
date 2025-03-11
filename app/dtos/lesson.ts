@@ -1,6 +1,7 @@
 import { BaseModelDto } from '@adocasts.com/dto/base'
 import Lesson from '#models/lesson'
 import ModuleDto from '#dtos/module'
+import UserDto from '#dtos/user'
 
 export default class LessonDto extends BaseModelDto {
   declare id: number
@@ -15,6 +16,7 @@ export default class LessonDto extends BaseModelDto {
   declare createdAt: string
   declare updatedAt: string
   declare module: ModuleDto | null
+  declare users: UserDto[]
 
   constructor(lesson?: Lesson) {
     super()
@@ -32,5 +34,6 @@ export default class LessonDto extends BaseModelDto {
     this.createdAt = lesson.createdAt.toISO()!
     this.updatedAt = lesson.updatedAt.toISO()!
     this.module = lesson.module && new ModuleDto(lesson.module)
+    this.users = UserDto.fromArray(lesson.users)
   }
 }

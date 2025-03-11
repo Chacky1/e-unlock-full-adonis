@@ -2,7 +2,7 @@ import CourseDto from "#dtos/course"
 import Footer from "~/components/footer"
 import Header from "~/components/header"
 import LessonSidebar from "~/components/lesson-sidebar"
-import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar"
+import { SidebarProvider } from "~/components/ui/sidebar"
 
 type LessonLayoutProps = {
   course: CourseDto
