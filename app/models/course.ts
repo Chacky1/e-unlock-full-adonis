@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { afterFetch, afterFind, BaseModel, column, hasMany, hasManyThrough, manyToMany } from '@adonisjs/lucid/orm'
+import { afterFetch, afterFind, BaseModel, column, hasMany, hasManyThrough } from '@adonisjs/lucid/orm'
 import type { HasMany, HasManyThrough } from '@adonisjs/lucid/types/relations'
 import drive from '@adonisjs/drive/services/main'
 import Module from './module.js'
